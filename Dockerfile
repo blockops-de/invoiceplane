@@ -1,5 +1,6 @@
 FROM alpine:3.19
 MAINTAINER Matthew Horwood <matt@horwood.biz>
+# Modified by Fabian Schuh
 
 RUN apk update                             \
     &&  apk add nginx php81-fpm php81-session \
@@ -31,6 +32,9 @@ RUN cd /tmp && \
     cp /config/php_fpm_site.conf /etc/php81/php-fpm.d/www.conf; \
     cp /config/nginx_site.conf /etc/nginx/http.d/default.conf; \
     chown nobody:nginx /var/www/html/* -R;
+
+# Install our custom invoice template
+COPY template-invoice.php /var/www/html/application/views/invoice_templates/pdf/blockops.php
 
 WORKDIR /var/www/html
 
