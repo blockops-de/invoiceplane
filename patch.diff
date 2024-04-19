@@ -1,0 +1,12 @@
+diff --color -Naur original/application/helpers/pdf_helper.php ip/application/helpers/pdf_helper.php
+--- original/application/helpers/pdf_helper.php	2024-04-19 09:18:20.765082346 +0200
++++ ip/application/helpers/pdf_helper.php	2024-04-19 09:18:35.328357077 +0200
+@@ -102,7 +102,7 @@
+     $html = $CI->load->view('invoice_templates/pdf/' . $invoice_template, $data, true);
+ 
+     $CI->load->helper('mpdf');
+-    return pdf_create($html, trans('invoice') . '_' . str_replace(array('\\', '/'), '_', $invoice->invoice_number),
++    return pdf_create($html, $invoice->invoice_number . '_' . str_replace(" ", '_', str_replace(".","", $invoice->client_name)),
+         $stream, $invoice->invoice_password, true, $is_guest, $include_zugferd, $associatedFiles);
+ }
+ 

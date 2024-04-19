@@ -22,6 +22,7 @@ ENV IP_SOURCE="https://github.com/InvoicePlane/InvoicePlane/releases/download" \
     DISABLE_SETUP="false"
 
 COPY setup /config
+COPY patch.diff /
 # copy invoiceplane sources to web dir
 ADD ${IP_SOURCE}/${IP_VERSION}/${IP_VERSION}.zip /tmp/
 RUN cd /tmp && \
@@ -31,7 +32,8 @@ RUN cd /tmp && \
     cp /config/php.ini /etc/php81/php.ini && \
     cp /config/php_fpm_site.conf /etc/php81/php-fpm.d/www.conf; \
     cp /config/nginx_site.conf /etc/nginx/http.d/default.conf; \
-    chown nobody:nginx /var/www/html/* -R;
+    chown nobody:nginx /var/www/html/* -R; \
+    patch -p1 < /patch.diff
 
 # Install our custom invoice template
 COPY template-invoice.php /var/www/html/application/views/invoice_templates/pdf/blockops.php
