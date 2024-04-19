@@ -27,13 +27,13 @@ COPY patch.diff /
 ADD ${IP_SOURCE}/${IP_VERSION}/${IP_VERSION}.zip /tmp/
 RUN cd /tmp && \
     unzip /tmp/${IP_VERSION}.zip && \
+    patch --directory=ip/ -p1 < /patch.diff && \
     cp -r ip/* /var/www/html/ && \
     chmod +x /config/start.sh; \
     cp /config/php.ini /etc/php81/php.ini && \
     cp /config/php_fpm_site.conf /etc/php81/php-fpm.d/www.conf; \
     cp /config/nginx_site.conf /etc/nginx/http.d/default.conf; \
-    chown nobody:nginx /var/www/html/* -R; \
-    patch -p1 < /patch.diff
+    chown nobody:nginx /var/www/html/* -R;
 
 # Install our custom invoice template
 COPY template-invoice.php /var/www/html/application/views/invoice_templates/pdf/blockops.php
