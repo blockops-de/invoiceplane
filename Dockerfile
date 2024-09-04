@@ -37,6 +37,7 @@ RUN cd /tmp && \
 
 # Install our custom invoice template
 COPY template-invoice.php /var/www/html/application/views/invoice_templates/pdf/blockops.php
+COPY template-quote.php /var/www/html/application/views/quote_templates/pdf/blockops.php
 
 WORKDIR /var/www/html
 
