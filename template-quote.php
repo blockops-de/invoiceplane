@@ -243,9 +243,9 @@ footer {
     ?>
    </div>
 
-  </header>
+</header>
 
-  <main>
+<main>
 
    <div class="invoice-details clearfix">
     <table>
@@ -264,7 +264,7 @@ footer {
     </table>
    </div>
 
-   <h1 class="invoice-title"><?php echo trans('invoice') . ' ' . $quote->invoice_number; ?></h1>
+    <h1 class="invoice-title"><?php echo trans('quote') . ' ' . $quote->quote_number; ?></h1>
 
    <table class="item-table">
     <thead>
@@ -322,7 +322,7 @@ footer {
        <?php _trans('item_tax'); ?>
       </td>
       <td class="text-right">
-       <?php echo format_currency($quote->invoice_item_tax_total); ?>
+                    <?php echo format_currency($quote->quote_item_tax_total); ?>
       </td>
      </tr>
      <?php } ?>
@@ -333,7 +333,7 @@ footer {
                     <?php echo $quote_tax_rate->quote_tax_rate_name . ' (' . format_amount($quote_tax_rate->quote_tax_rate_percent) . '%)'; ?>
       </td>
       <td class="text-right">
-       <?php echo format_currency($quote_tax_rate->invoice_tax_rate_amount); ?>
+                    <?php echo format_currency($quote_tax_rate->quote_tax_rate_amount); ?>
       </td>
      </tr>
      <?php endforeach ?>
@@ -344,7 +344,7 @@ footer {
        <?php _trans('discount'); ?>
       </td>
       <td class="text-right">
-       <?php echo format_amount($quote->invoice_discount_percent); ?>%
+                    <?php echo format_amount($quote->quote_discount_percent); ?>%
       </td>
      </tr>
      <?php endif; ?>
@@ -354,17 +354,17 @@ footer {
        <?php _trans('discount'); ?>
       </td>
       <td class="text-right">
-       <?php echo format_currency($quote->invoice_discount_amount); ?>
+                    <?php echo format_currency($quote->quote_discount_amount); ?>
       </td>
      </tr>
      <?php endif; ?>
 
      <tr>
       <td <?php echo($show_item_discounts ? 'colspan="5"' : 'colspan="4"'); ?> class="text-right">
-       <b><?php _trans('total'); ?></b>
-      </td>
-      <td class="text-right">
-       <b><?php echo format_currency($quote->invoice_total); ?></b>
+                <b><?php _trans('total'); ?></b>
+            </td>
+            <td class="text-right">
+                <b><?php echo format_currency($quote->quote_total); ?></b>
       </td>
      </tr>
     </tbody>
@@ -401,4 +401,3 @@ footer {
 
  </body>
 </html>
-
